@@ -55,7 +55,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'public/templates'),
+            os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'src/home/templates')
         ],
         'APP_DIRS': True,
@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'configs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'python_app',
-        'USER': 'mailsys',
-        'PASSWORD': '6RPqSzED',
-        'HOST': '45.76.210.62',
+        'NAME': 'ssv_em',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
@@ -129,3 +129,46 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'public')
 ]
+
+LOGGING = {
+	'version':1,
+	'disable_existing_loggers': False,
+	'formatters':{
+		'large':{
+			'format':'%(asctime)s  %(levelname)s  %(process)d  %(pathname)s  %(funcName)s  %(lineno)d  %(message)s  '
+		},
+		'tiny':{
+			'format':'%(asctime)s  %(message)s  '
+		}
+	},
+	'handlers':{
+		'errors_file':{
+			'level':'ERROR',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename': BASE_DIR + '/logs/ErrorLoggers.log',
+			'formatter':'large',
+		},
+		'info_file':{
+			'level':'INFO',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename': BASE_DIR + '/logs/InfoLoggers.log',
+			'formatter':'large',
+		},
+	},
+	'loggers':{
+		'error_logger':{
+			'handlers':['errors_file'],
+			'level':'WARNING',
+			'propagate':False,
+		},
+		'info_logger':{
+			'handlers':['info_file'],
+			'level':'INFO',
+			'propagate':False,
+		},
+	},
+}

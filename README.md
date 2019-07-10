@@ -12,4 +12,5 @@
 ## How to run app
 1. install pip
 2. install Python
-3. run web: open cmd in folder contain file manage.py enter code: python manage.py runserver
+3. run CLI in root folder: python manage.py runserver (run project)
+4. create new app (run inside src folder): python ../manage.py startapp <module name>

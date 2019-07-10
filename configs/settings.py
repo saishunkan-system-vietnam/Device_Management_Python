@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pythonWeb.urls'
+ROOT_URLCONF = 'configs.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'pythonWeb.wsgi.application'
+WSGI_APPLICATION = 'configs.wsgi.application'
 
 
 # Database
@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'pythonWeb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'demo',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'python_app',
+        'USER': 'mailsys',
+        'PASSWORD': '6RPqSzED',
+        'HOST': '45.76.210.62',
         'PORT': '3306',
     }
 }

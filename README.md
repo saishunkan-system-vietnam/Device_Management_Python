@@ -24,12 +24,9 @@
 1. Add in view.py
 ```
     import logging
-    log = logging.getLogger(__name__)
 ```
 2. Then to get something out do this
 ```
-    log.debug("Hey there it works!!")
-    log.info("Hey there it works!!")
-    log.warn("Hey there it works!!")
-    log.error("Hey there it works!!")
+    logging.getLogger("error_logger").error("Error log");
+    logging.getLogger("info_logger").info("Info log");
 ```

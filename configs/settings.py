@@ -130,49 +130,45 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'public')
 ]
 
-
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'standard': {
-            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt': "%d/%b/%Y %H:%M:%S"
-        },
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'logfile': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR + "/logs/logfile",
-            'maxBytes': 50000,
-            'backupCount': 2,
-            'formatter': 'standard',
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'standard'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-            'level': 'WARN',
-        },
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-        'MYAPP': {
-            'handlers': ['console', 'logfile'],
-            'level': 'DEBUG',
-        },
-    }
+	'version':1,
+	'disable_existing_loggers': False,
+	'formatters':{
+		'large':{
+			'format':'%(asctime)s  %(levelname)s  %(process)d  %(pathname)s  %(funcName)s  %(lineno)d  %(message)s  '
+		},
+		'tiny':{
+			'format':'%(asctime)s  %(message)s  '
+		}
+	},
+	'handlers':{
+		'errors_file':{
+			'level':'ERROR',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename': BASE_DIR + '/logs/ErrorLoggers.log',
+			'formatter':'large',
+		},
+		'info_file':{
+			'level':'INFO',
+		       'class':'logging.handlers.TimedRotatingFileHandler',
+			'when':'midnight',
+			'interval':1,
+			'filename': BASE_DIR + '/logs/InfoLoggers.log',
+			'formatter':'large',
+		},
+	},
+	'loggers':{
+		'error_logger':{
+			'handlers':['errors_file'],
+			'level':'WARNING',
+			'propagate':False,
+		},
+		'info_logger':{
+			'handlers':['info_file'],
+			'level':'INFO',
+			'propagate':False,
+		},
+	},
 }

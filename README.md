@@ -3,7 +3,7 @@
 ## InFo
 1. Python 3.7.4
 2. Django 2.2.3
-3. MySql 
+3. MySql
 4. Pip 19.0.3
 
 ## Document
@@ -19,3 +19,17 @@
             pip install mysqlclient
 5. run CLI in root folder: python manage.py runserver (run project)
 6. create new app (run inside src folder): python ../manage.py startapp <module name>
+
+## Use log
+1. Add in view.py
+```
+    import logging
+    log = logging.getLogger(__name__)
+```
+2. Then to get something out do this
+```
+    log.debug("Hey there it works!!")
+    log.info("Hey there it works!!")
+    log.warn("Hey there it works!!")
+    log.error("Hey there it works!!")
+```

@@ -10,18 +10,21 @@ Home
 <div>
     <ul class="breadcrumb">
         <li>
-            <a href="#">Home</a>
+            <a href="{% url 'home' %}">Home</a>
         </li>
         <li>
-            <a href="#">Brand</a>
+            <a href="{% url 'brand' %}">Brand</a>
         </li>
     </ul>
 </div>
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
+            <div class="text-center">
+                <h1>Brand Manager</h1>
+            </div>
             <div class="box-header well" data-original-title="">
-                <h2>Combined All</h2>
+                <h2>List brands</h2>
 
                 <div class="box-icon">
                     <a href="#" class="btn btn-setting btn-round btn-default"><i
@@ -40,6 +43,7 @@ Home
                             <th>Date registered</th>
                             <th>Role</th>
                             <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +54,20 @@ Home
                             <td class="center">
                                 <span class="label-success label label-default">Active</span>
                             </td>
+                            <td class="center">
+                                <a class="btn btn-success" href="#">
+                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                    View
+                                </a>
+                                <a class="btn btn-info" href="#">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger" href="#">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>White Horse</td>
@@ -57,6 +75,20 @@ Home
                             <td class="center">Staff</td>
                             <td class="center">
                                 <span class="label-default label label-danger">Banned</span>
+                            </td>
+                            <td class="center">
+                                <a class="btn btn-success" href="#">
+                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                    View
+                                </a>
+                                <a class="btn btn-info" href="#">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger" href="#">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                         <tr>
@@ -66,6 +98,20 @@ Home
                             <td class="center">
                                 <span class="label-default label">Inactive</span>
                             </td>
+                            <td class="center">
+                                <a class="btn btn-success" href="#">
+                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                    View
+                                </a>
+                                <a class="btn btn-info" href="#">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger" href="#">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Saruar</td>
@@ -74,6 +120,20 @@ Home
                             <td class="center">
                                 <span class="label-warning label label-default">Pending</span>
                             </td>
+                            <td class="center">
+                                <a class="btn btn-success" href="#">
+                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                    View
+                                </a>
+                                <a class="btn btn-info" href="#">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger" href="#">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Sana Amrin</td>
@@ -81,6 +141,20 @@ Home
                             <td class="center">Staff</td>
                             <td class="center">
                                 <span class="label-success label label-default">Active</span>
+                            </td>
+                            <td class="center">
+                                <a class="btn btn-success" href="#">
+                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                    View
+                                </a>
+                                <a class="btn btn-info" href="#">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger" href="#">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                     </tbody>

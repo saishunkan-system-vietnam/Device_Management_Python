@@ -77,3 +77,14 @@ Document: https://docs.djangoproject.com/en/2.2/howto/legacy-databases/
         print(context)
         return render(request, 'index.html', {'title': title, 'context': context})
 ```
+
+## Condition in where
+```
+    id__gte = 2 :: id >=2
+
+    id__gt = 2 :: id >2
+
+    id__lte = 2 :: id <=2
+
+    id__lt = 2 :: id <2
+```

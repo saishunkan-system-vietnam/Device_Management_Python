@@ -23,37 +23,40 @@ Home
             <div class="text-center">
                 <h1>Brand Manager</h1>
             </div>
-            <div class="box-header well" data-original-title="">
+            <div class="box-header well">
                 <h2>List brands</h2>
 
                 <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                    <!-- <a href="#" class="btn btn-setting btn-round btn-default"><i
                             class="glyphicon glyphicon-cog"></i></a>
                     <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                            class="glyphicon glyphicon-remove"></i></a>
+                            class="glyphicon glyphicon-chevron-up"></i></a> -->
+                    <a href="#" class="btn btn-plus btn-round btn-primary"><i
+                            class="glyphicon glyphicon-plus"></i></a>
                 </div>
             </div>
             <div class="box-content">
                 <table class="table table-bordered table-striped table-condensed">
                     <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Date registered</th>
-                            <th>Role</th>
-                            <th>Status</th>
+                            <th>ID</th>
+                            <th>Brand name</th>
+                            <th>Created user</th>
+                            <th>Update user</th>
+                            <th>Created time</th>
+                            <th>Update time</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for brand in data %}
                         <tr>
-                            <td>Muhammad Usman</td>
-                            <td class="center">2012/01/01</td>
-                            <td class="center">Member</td>
-                            <td class="center">
-                                <span class="label-success label label-default">Active</span>
-                            </td>
+                            <td>{{brand.id}}</td>
+                            <td class="center">{{brand.brand_name}}</td>
+                            <td class="center">{{brand.created_user}}</td>
+                            <td class="center">{{brand.update_user}}</td>
+                            <td class="center">{{brand.created_time}}</td>
+                            <td class="center">{{brand.update_time}}</td>                           
                             <td class="center">
                                 <a class="btn btn-success" href="#">
                                     <i class="glyphicon glyphicon-zoom-in icon-white"></i>
@@ -69,94 +72,7 @@ Home
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>White Horse</td>
-                            <td class="center">2012/02/01</td>
-                            <td class="center">Staff</td>
-                            <td class="center">
-                                <span class="label-default label label-danger">Banned</span>
-                            </td>
-                            <td class="center">
-                                <a class="btn btn-success" href="#">
-                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                                    View
-                                </a>
-                                <a class="btn btn-info" href="#">
-                                    <i class="glyphicon glyphicon-edit icon-white"></i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger" href="#">
-                                    <i class="glyphicon glyphicon-trash icon-white"></i>
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sheikh Heera</td>
-                            <td class="center">2012/02/01</td>
-                            <td class="center">Admin</td>
-                            <td class="center">
-                                <span class="label-default label">Inactive</span>
-                            </td>
-                            <td class="center">
-                                <a class="btn btn-success" href="#">
-                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                                    View
-                                </a>
-                                <a class="btn btn-info" href="#">
-                                    <i class="glyphicon glyphicon-edit icon-white"></i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger" href="#">
-                                    <i class="glyphicon glyphicon-trash icon-white"></i>
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Saruar</td>
-                            <td class="center">2012/03/01</td>
-                            <td class="center">Member</td>
-                            <td class="center">
-                                <span class="label-warning label label-default">Pending</span>
-                            </td>
-                            <td class="center">
-                                <a class="btn btn-success" href="#">
-                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                                    View
-                                </a>
-                                <a class="btn btn-info" href="#">
-                                    <i class="glyphicon glyphicon-edit icon-white"></i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger" href="#">
-                                    <i class="glyphicon glyphicon-trash icon-white"></i>
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sana Amrin</td>
-                            <td class="center">2012/01/21</td>
-                            <td class="center">Staff</td>
-                            <td class="center">
-                                <span class="label-success label label-default">Active</span>
-                            </td>
-                            <td class="center">
-                                <a class="btn btn-success" href="#">
-                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                                    View
-                                </a>
-                                <a class="btn btn-info" href="#">
-                                    <i class="glyphicon glyphicon-edit icon-white"></i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger" href="#">
-                                    <i class="glyphicon glyphicon-trash icon-white"></i>
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
+                        {% endfor %}                        
                     </tbody>
                 </table>
                 <ul class="pagination pagination-centered">

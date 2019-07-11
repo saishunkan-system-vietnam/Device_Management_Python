@@ -9,21 +9,22 @@ Home
 <div class="container">
 
     <form action="/add_product" method="POST" class="form-horizontal">
+
+        {% csrf_token %}
+
         <div class="form-group">
-            <legend>Add Products</legend>
+            <label for="product_name">Product name:</label>
+            {{form.product_name}}
         </div>
 
         <div class="form-group">
-            <input type="text" name="" id="input" class="form-control" placeholder="Enter name product...">
+            <label>Description:</label>
+            {{form.description}}
         </div>
 
         <div class="form-group">
-            <textarea name="" id="input" class="form-control" rows="3" required="required"
-                placeholder="Enter description of product..."></textarea>
-        </div>
-
-        <div class="form-group">
-            <input type="file" class="btn btn-default">
+            <label>Description:</label>
+            {{form.birth_year}}
         </div>
 
         <div class="form-group">
@@ -32,4 +33,5 @@ Home
     </form>
 
 </div>
+<h1>{{name}}</h1>
 {% endblock content %}

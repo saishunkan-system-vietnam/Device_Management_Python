@@ -78,13 +78,16 @@ Document: https://docs.djangoproject.com/en/2.2/howto/legacy-databases/
         return render(request, 'index.html', {'title': title, 'context': context})
 ```
 
-## Condition in where
+## Condition in where: 
+https://docs.djangoproject.com/en/2.2/topics/db/queries/
+https://docs.djangoproject.com/en/2.2/topics/db/queries/
 ```
-    id__gte = 2 :: id >=2
+    brands.objects.filter(is_deleted=0, id = 2)
+    id__gte = 2 <=> id >=2
+    id__gt = 2  <=> id >2
+    id__lte = 2 <=> id <=2
+    id__lt = 2  <=> id <2
 
-    id__gt = 2 :: id >2
-
-    id__lte = 2 :: id <=2
-
-    id__lt = 2 :: id <2
+    Entry.objects.all().filter(pub_date__year=2006)
+    pub_date__year=2006 <=> year(pub_date)=2006
 ```

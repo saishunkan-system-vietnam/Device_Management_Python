@@ -2,7 +2,9 @@ from django.shortcuts import render
 from .models import Users
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
+from .form import UserForm
 import logging
+
 #from django.forms import
 
 # Create your views here.
@@ -22,7 +24,8 @@ def edit(request, id):
             raise Http404("User does not exist")
         return render(request, 'edit.html', {'title': title, 'user': user})
     elif request.method == 'POST':
-        try:
+        form = UserForm(request.POST)
+        if form.is_valid():
             u = Users.objects.get(id = id)
             u.user_name = request.POST['user_name']
             u.full_name = request.POST['full_name']
@@ -33,12 +36,12 @@ def edit(request, id):
             u.save()
             user = Users.objects.get(pk=id)
             logging.getLogger("info_logger").info("Save data User success")
-            return HttpResponseRedirect(reverse('user'), {'error_message': 'Save data User success'})
-        except Exception as e:
-            logging.getLogger("error_logger").error(e)
-            user = Users.objects.all()
-            return HttpResponseRedirect(reverse('brand:index'))
-            return render(request, 'index.html', {'title': title, 'context': context['all_objects']})
+            return HttpResponseRedirect(reverse('user'), {'errors': 'Save data User success'})
+        else:
+            logging.getLogger("error_logger").error('aaaaaaaaaaaaa')
+            user = Users.objects.get(pk=id)
+            # return HttpResponseRedirect(reverse('user'))
+            return render(request, 'edit.html', {'title': title, 'user': user, 'errors': form.non_field_errors()})
 
 
 # def update(request, id):print(request)

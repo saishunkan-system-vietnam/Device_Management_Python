@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .form import product
 from pprint import pprint
+import logging
 
 # Create your views here.
 def home(request):

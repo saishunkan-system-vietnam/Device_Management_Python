@@ -1,7 +1,7 @@
 {% extends 'master.html' %}
 
 {% block title %}
-
+    
 {% endblock title %}
 
 {% block content %}
@@ -82,7 +82,7 @@
     <!-- topbar ends -->
 <div class="ch-container">
     <div class="row">
-
+        
         <!-- left menu starts -->
         <div class="col-sm-2 col-lg-2">
             <div class="sidebar-nav">
@@ -94,9 +94,10 @@
                         <li class="nav-header">Main</li>
                         <li><a class="ajax-link" href="{% url 'home' %}"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
                         </li>
-                        <li><a class="ajax-link" href="{% url 'brand' %}"><i class="glyphicon glyphicon-list-alt"></i><span> Brand</span></a>
+                        <li><a class="ajax-link" href="{% url 'brand:index' %}"><i class="glyphicon glyphicon-eye-open"></i><span> Brand</span></a>
                         </li>
-                        <li><a class="ajax-link" href="{% url 'user' %}"><i class="glyphicon glyphicon-user"></i><span> User</span></a></li>
+                        <li><a class="ajax-link" href="form.html"><i
+                                    class="glyphicon glyphicon-edit"></i><span> Forms</span></a></li>
                         <li><a class="ajax-link" href="chart.html"><i class="glyphicon glyphicon-list-alt"></i><span> Charts</span></a>
                         </li>
                         <li><a class="ajax-link" href="typography.html"><i class="glyphicon glyphicon-font"></i><span> Typography</span></a>
@@ -142,13 +143,13 @@
         </noscript>
 
         <div id="content" class="col-lg-10 col-sm-10">
-            <!-- content starts -->
+            <!-- content starts -->            
             {% block contentAdmin %}
-
+                
             {% endblock contentAdmin %}
             <!-- content ends -->
     </div><!--/#content.col-md-0-->
-</div><!--/fluid-row-->
+</div><!--/fluid-row--> 
 
     <hr>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -181,3 +182,4 @@
 
 </div><!--/.fluid-container-->
 {% endblock content %}
+    

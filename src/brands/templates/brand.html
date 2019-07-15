@@ -13,30 +13,26 @@ Home
             <a href="{% url 'home' %}">Home</a>
         </li>
         <li>
-            <a href="{% url 'brand' %}">Brand</a>
+            <a href="{% url 'brand:index' %}">Brand</a>
         </li>
     </ul>
 </div>
+<div class="box-inner text-center">
+    <h1>Brand Manager</h1>
+</div>
 <div class="row">
     <div class="box col-md-12">
-        <div class="box-inner">
-            <div class="text-center">
-                <h1>Brand Manager</h1>
-            </div>
+        <div class="box-inner">            
             <div class="box-header well">
                 <h2>List brands</h2>
 
                 <div class="box-icon">
-                    <!-- <a href="#" class="btn btn-setting btn-round btn-default"><i
-                            class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a> -->
-                    <a href="#" class="btn btn-plus btn-round btn-primary"><i
+                    <a href="{% url 'brand:add' %}" class="btn btn-round btn-primary"><i
                             class="glyphicon glyphicon-plus"></i></a>
                 </div>
             </div>
             <div class="box-content">
-                <table class="table table-bordered table-striped table-condensed">
+                <table class="table table-bordered table-striped table-condensed" >
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -50,7 +46,7 @@ Home
                     </thead>
                     <tbody>
                         {% for brand in data %}
-                        <tr>
+                        <tr>   
                             <td>{{brand.id}}</td>
                             <td class="center">{{brand.brand_name}}</td>
                             <td class="center">{{brand.created_user}}</td>
@@ -69,7 +65,7 @@ Home
                                 <a class="btn btn-danger" href="#">
                                     <i class="glyphicon glyphicon-trash icon-white"></i>
                                     Delete
-                                </a>
+                                </a>   
                             </td>
                         </tr>
                         {% endfor %}                        

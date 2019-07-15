@@ -38,7 +38,6 @@ def edit(request, id):
             logging.getLogger("info_logger").info("Save data User success")
             return HttpResponseRedirect(reverse('user'), {'errors': 'Save data User success'})
         else:
-            logging.getLogger("error_logger").error('aaaaaaaaaaaaa')
             user = Users.objects.get(pk=id)
             # return HttpResponseRedirect(reverse('user'))
             return render(request, 'edit.html', {'title': title, 'user': user, 'errors': form.non_field_errors()})

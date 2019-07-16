@@ -35,6 +35,7 @@
 1. Auto-generate the models
 ```
     python manage.py inspectdb > models.py
+    or for table: python manage.py inspectdb TableName > output.py
 ```
 Document: https://docs.djangoproject.com/en/2.2/howto/legacy-databases/
 

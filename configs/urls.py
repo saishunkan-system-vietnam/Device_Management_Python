@@ -22,4 +22,6 @@ urlpatterns = [
     path('brand', include('src.brands.urls',namespace='brand')),
     path('admin/', admin.site.urls),
     path('user/', include('src.users.urls')),
+    path('categories/', include('src.categories.urls')),
+    # path('maintenances/', include('src.maintenances.urls')),
 ]

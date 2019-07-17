@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .form import product
 from pprint import pprint
 import logging
 
 # Create your views here.
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
     try:
         #raise Exception("Custom error thrown by newbie developer :D")
         logging.getLogger("info_logger").info(request);

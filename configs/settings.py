@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'src.home',
     'src.login',
     'src.users',
+    'src.categories',
+    # 'src.maintenances'
 ]
 
 MIDDLEWARE = [

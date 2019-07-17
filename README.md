@@ -79,7 +79,7 @@ Document: https://docs.djangoproject.com/en/2.2/howto/legacy-databases/
         return render(request, 'index.html', {'title': title, 'context': context})
 ```
 
-## Condition in where: 
+## Condition in where:
 https://docs.djangoproject.com/en/2.2/topics/db/queries/
 https://docs.djangoproject.com/en/2.2/topics/db/queries/
 ```
@@ -92,3 +92,22 @@ https://docs.djangoproject.com/en/2.2/topics/db/queries/
     Entry.objects.all().filter(pub_date__year=2006)
     pub_date__year=2006 <=> year(pub_date)=2006
 ```
+
+## How to create django class from exist table
+1. You can auto generate models with:
+```
+    python manage.py inspectdb
+```
+
+2. in order to save the output to a file
+```
+    python manage.py inspectdb > models_from_db.py
+```
+
+3. You can get generate for just one table passing the table name to the command
+```
+    python manage.py inspectdb table > models_from_db.py
+```
+
+Read mode auto generate models: https://docs.djangoproject.com/en/2.1/howto/legacy-databases/#auto-generate-the-models
+Read mode inspectdb: https://docs.djangoproject.com/en/2.1/ref/django-admin/#django-admin-inspectdb

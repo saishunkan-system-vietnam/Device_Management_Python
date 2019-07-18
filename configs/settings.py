@@ -140,7 +140,7 @@ STATICFILES_DIRS = [
 
 LOGGING = {
 	'version':1,
-	'disable_existing_loggers': False,
+	'disable_existing_loggers': True,
 	'formatters':{
 		'large':{
 			'format':'%(asctime)s  %(levelname)s  %(process)d  %(pathname)s  %(funcName)s  %(lineno)d  %(message)s  '
@@ -152,7 +152,7 @@ LOGGING = {
 	'handlers':{
 		'errors_file':{
 			'level':'ERROR',
-		       'class':'logging.handlers.TimedRotatingFileHandler',
+            'class':'logging.handlers.TimedRotatingFileHandler',
 			'when':'midnight',
 			'interval':1,
 			'filename': BASE_DIR + '/logs/ErrorLoggers.log',
@@ -160,7 +160,7 @@ LOGGING = {
 		},
 		'info_file':{
 			'level':'INFO',
-		       'class':'logging.handlers.TimedRotatingFileHandler',
+            'class':'logging.handlers.TimedRotatingFileHandler',
 			'when':'midnight',
 			'interval':1,
 			'filename': BASE_DIR + '/logs/InfoLoggers.log',

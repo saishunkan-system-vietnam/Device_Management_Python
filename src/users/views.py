@@ -1,9 +1,10 @@
 from django.shortcuts import render
+import logging
 from .models import Users
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from .form import UserForm
-import logging
+from django.contrib import messages
 
 #from django.forms import
 
@@ -25,22 +26,29 @@ def edit(request, id):
         return render(request, 'edit.html', {'title': title, 'user': user})
     elif request.method == 'POST':
         form = UserForm(request.POST)
+        u = Users.objects.get(id=id)
         if form.is_valid():
-            u = Users.objects.get(id = id)
             u.user_name = request.POST['user_name']
             u.full_name = request.POST['full_name']
             u.email = request.POST['email']
             u.birthdate = request.POST['dateofbirth']
             u.address = request.POST['address']
             u.join_date = request.POST['joindate']
-            u.save()
-            user = Users.objects.get(pk=id)
-            logging.getLogger("info_logger").info("Save data User success")
-            return HttpResponseRedirect(reverse('user'), {'errors': 'Save data User success'})
+            try:
+                u.save()
+                messages.success(request, 'Update user %s success!' % request.POST['user_name'])
+                logging.getLogger("info_logger").info('Save data User id = %s success' % id)
+                return HttpResponseRedirect(reverse('user'))
+            except Exception as e:
+                messages.error(request, e)
+                logging.getLogger("error_logger").info(repr(e))
+                pass
+                return render(request, 'edit.html', {'title': title, 'user': u})
         else:
             user = Users.objects.get(pk=id)
+            messages.error(request, 'Something went wrong!')
             # return HttpResponseRedirect(reverse('user'))
-            return render(request, 'edit.html', {'title': title, 'user': user, 'errors': form.non_field_errors()})
+            return render(request, 'edit.html', {'title': title, 'user': user})
 
 
 # def update(request, id):print(request)

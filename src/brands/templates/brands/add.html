@@ -34,8 +34,7 @@ Add brand
                 </div>
             </div>
             <div class="box-content">
-                <form action="{% url 'brand:add' %}" method="POST">
-                    {{ form.non_field_errors }}
+                <form action="{% url 'brand:add' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         {{form.brand_name.label_tag}}

@@ -1,7 +1,7 @@
 {% extends 'masterAdmin.html' %}
 
 {% block title %}
-Category
+Device
 {% endblock title %}
 
 
@@ -13,18 +13,18 @@ Category
             <a href="{% url 'home' %}">Home</a>
         </li>
         <li>
-            <a href="{% url 'category:index' %}">Category</a>
+            <a href="{% url 'device:index' %}">Device</a>
         </li>
     </ul>
 </div>
 <div class="box-inner text-center">
-    <h1>Category Manager</h1>
+    <h1>Device Manager</h1>
 </div>
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well">
-                <h2>List categories</h2>
+                <h2>List devices</h2>
 
                 <div class="box-icon">
                     <a href="{% url 'category:add' %}" class="btn btn-round btn-primary"><i
@@ -36,31 +36,31 @@ Category
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Category parent</th>
+                            <th>Brand</th>
+                            <th>Category</th>
+                            <th>Serial number</th>
                             <th>Name</th>
-                            <th>Created user</th>
-                            <th>Update user</th>
-                            <th>Created time</th>
-                            <th>Update time</th>
+                            <th>Image</th>
+                            <th>Status</th>                            
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for category in data %}
+                        {% for device in data %}
                         <tr>
-                            <td>{{category.id}}</td>
-                            <td class="center">{{category.id_parent}}</td>
-                            <td class="center">{{category.category_name}}</td>
-                            <td class="center">{{category.created_user}}</td>
-                            <td class="center">{{category.update_user}}</td>
-                            <td class="center">{{category.created_time}}</td>
-                            <td class="center">{{category.update_time}}</td>
+                            <td>{{device.id}}</td>
+                            <td class="center">{{device.brand_id}}</td>
+                            <td class="center">{{device.categories_id}}</td>
+                            <td class="center">{{device.serial_number}}</td>
+                            <td class="center">{{device.name}}</td>
+                            <td class="center">{{device.image}}</td>
+                            <td class="center">{{device.status}}</td>
                             <td class="center">
                                 <a class="btn btn-success" href="#">
                                     <i class="glyphicon glyphicon-zoom-in icon-white"></i>
                                     View
                                 </a>
-                                <a class="btn btn-info" href="{% url 'category:edit' category.id %}">
+                                <a class="btn btn-info" href="#">
                                     <i class="glyphicon glyphicon-edit icon-white"></i>
                                     Edit
                                 </a>

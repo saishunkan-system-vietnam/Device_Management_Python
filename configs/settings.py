@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'src.login',
     'src.users',
     'src.categories',
+    'src.devices',
 ]
 
 MIDDLEWARE = [

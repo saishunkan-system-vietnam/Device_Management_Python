@@ -1,0 +1,132 @@
+{% extends 'masterAdmin.html' %}
+
+{% block title %}
+Edit category
+{% endblock title %}
+
+{% block contentAdmin %}
+{% load staticfiles %}
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'category:index' %}">Category</a>
+        </li>
+        <li>
+            <a href="{% url 'category:add' %}">Edit</a>
+        </li>
+    </ul>
+</div>
+
+<div class="box-inner text-center">
+    <h1>Edit Category</h1>
+</div>
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-download-alt"></i>Edit Category</h2>
+                <div class="box-icon">
+                    <a href="{% url 'category:index' %}" class="btn btn-round btn-danger"><i
+                            class=" glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="{% url 'category:edit' id %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form.category_name.label_tag}}
+                        {{form.category_name}}
+                        {{form.category_name.errors}}
+                    </div>
+                    <div class="form-group">
+                        <label>Brand:</label>
+                        <select name="brands_id" current_value="{{brands_value_current}}" class="form-control"
+                            required="required">
+                            <option value="" hidden>---Select a brand---</option>
+                            {% if lstBrands %}
+                            {% for item in lstBrands %}
+                            <option {% if brands_value_current == item.id %} selected {% endif %} value="{{item.id}}">
+                                {{item.brand_name}}</option>
+                            {% endfor %}
+                            {% endif %}
+                        </select>
+                        {{form.brands_id.errors}}
+                    </div>
+                    <div id="id_parent" class="form-group">
+                        <label>Category parent:</label>
+                        <select name="id_parent" hidden current_value="{{category_value_current}}" class="form-control"
+                            required="required">
+                            {% if category_value_current == ''  %}
+                            <option value="" hidden>---Select a category parent---</option>
+                            {% endif %}
+                        </select>
+                        <input type="number" hidden name="id_parent" id="input_idParent" value="0">
+                        {{form.id_parent.errors}}
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input {% if is_parent_current %} checked {% endif %} type="checkbox" name=is_parent>
+                                Category parent
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function callAjax(brand_id, category_id = null) {
+        $.ajax({
+            url: "{% url 'category:get_categories' %}",
+            method: 'post',
+            data: { brand_id: brand_id, category_id: category_id, csrfmiddlewaretoken: '{{ csrf_token }}' }
+        }).done(function (res) {
+            if (res) {
+                $('select[name="id_parent"]').html(res);
+            }
+        });
+    }
+    $('select[name="brands_id"]').on('change', function () {
+        _this = $(this);
+        brand_id = _this.val();
+        if (brand_id && brand_id != '') {
+            callAjax(brand_id, null);
+        }
+    });
+
+    function isParentOnChange(_this) {
+        if (_this.checked == true) {
+            $('#id_parent').hide();
+            $('select[name="id_parent"]').prop("disabled", true);
+            $('#input_idParent').prop("disabled", false);
+        } else {
+            $('select[name="id_parent"]').prop("disabled", false);
+            $('#id_parent').show();
+            $('#input_idParent').prop("disabled", true);
+        }
+    }
+
+    $('input[name="is_parent"]').on('change', function () {
+        _this = $(this)
+        isParentOnChange(_this[0])
+    });
+
+    $(document).ready(function () {
+        category_id = $('select[name="id_parent"]').attr('current_value')
+        brand_id = $('select[name="brands_id"]').attr('current_value')
+        if (category_id && category_id != '') {
+            callAjax(brand_id, category_id);
+        }
+        isParentOnChange($('input[name="is_parent"]')[0])
+    });
+</script>
+{% endblock contentAdmin %}

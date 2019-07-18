@@ -21,6 +21,7 @@ urlpatterns = [
     path('login/', include('src.login.urls')),
     path('brand/', include('src.brands.urls', namespace='brand')),
     path('category/', include('src.categories.urls', namespace='category')),
+    path('device/', include('src.devices.urls', namespace='device')),
     path('admin/', admin.site.urls),
     path('user/', include('src.users.urls')),
 ]

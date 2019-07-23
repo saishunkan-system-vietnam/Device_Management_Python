@@ -23,7 +23,7 @@ def edit(request, id):
             user = Users.objects.get(pk=id)
         except Users.DoesNotExist:
             raise Http404("User does not exist")
-        return render(request, 'edit.html', {'title': title, 'user': user})
+        return render(request, 'edit.html', {'title': title, 'users': user})
     elif request.method == 'POST':
         form = UserForm(request.POST)
         u = Users.objects.get(id=id)
@@ -43,12 +43,12 @@ def edit(request, id):
                 messages.error(request, e)
                 logging.getLogger("error_logger").info(repr(e))
                 pass
-                return render(request, 'edit.html', {'title': title, 'user': u})
+                return render(request, 'edit.html', {'title': title, 'users': u})
         else:
             user = Users.objects.get(pk=id)
             messages.error(request, 'Something went wrong!')
             # return HttpResponseRedirect(reverse('user'))
-            return render(request, 'edit.html', {'title': title, 'user': user})
+            return render(request, 'edit.html', {'title': title, 'users': user})
 
 
 # def update(request, id):print(request)

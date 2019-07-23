@@ -1,0 +1,28 @@
+{% for users in context %}
+    <tr>
+        <td>{{ users.user_name }}</td>
+        <td class="center">{{ users.created_time|date:'d-m-Y' }}</td>
+        <td class="center">{{ users.position }}</td>
+        <td class="center">
+        {% if users.status == 0 %}
+            <span class="label-success label label-default">Active</span>
+        {% elif users.status == 1 %}
+            <span class="label-default label label-danger">Banned</span>
+        {% endif %}
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="{% url 'user_edit' users.id %}">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+    </tr>
+{% endfor %}

@@ -1,0 +1,24 @@
+{% for brand in brand_data %}
+<tr>
+    <td>{{brand.id}}</td>
+    <td class="center">{{brand.brand_name}}</td>
+    <td class="center">{{brand.created_user}}</td>
+    <td class="center">{{brand.update_user}}</td>
+    <td class="center">{{brand.created_time}}</td>
+    <td class="center">{{brand.update_time}}</td>
+    <td class="center">
+        <!-- <a class="btn btn-success" href="#">
+                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                    View
+                                </a> -->
+        <a class="btn btn-info" href="{% url 'brand:edit' brand.id %}">
+            <i class="glyphicon glyphicon-edit icon-white"></i>
+            Edit
+        </a>
+        <button class="btn btn-delete btn-danger" id="{{brand.id}}">
+            <i class="glyphicon glyphicon-trash icon-white"></i>
+            Delete
+        </button>
+    </td>
+</tr>
+{% endfor %}

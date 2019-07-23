@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'src.users',
     'src.categories',
     'src.devices',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'configs.wsgi.application'
+# Channels
+ASGI_APPLICATION = 'configs.routing.application'
 
 
 # Database
@@ -179,4 +182,10 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+CHANNEL_LAYERS={
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+     }
 }

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import configs.contants as contants
-import requests
+# import requests
 import json
 from ..users.models import Users
 from django.contrib.auth import authenticate, login

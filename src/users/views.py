@@ -14,7 +14,7 @@ title = "List users"
 def user(request):
     all_objects = Users.objects.all()
     context = {'all_objects': all_objects}
-    return render(request, 'index.html', {'title': title, 'context': context['all_objects']})
+    return render(request, 'index.html', {'title': title, 'lstUser': context['all_objects']})
 
 def edit(request, id):
     title = "Edit user profile"

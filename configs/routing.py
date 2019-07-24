@@ -6,6 +6,6 @@ from src.users.consumers import UserConsumer
 application = ProtocolTypeRouter({
     "websocket": URLRouter([
         path('ws_brand/', BrandsConsumers),
-        path('ws_user/', UserConsumer)
+        path('user/', UserConsumer)
     ])
 })

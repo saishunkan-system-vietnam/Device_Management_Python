@@ -21,7 +21,7 @@ class UserConsumer(AsyncJsonWebsocketConsumer):
 	async def send_status(self):
 		users = Users.objects.all()
 		# users = serializers.serialize('json', users)
-		html = render_to_string("includes/list_user.html", {'users': users})
+		html = render_to_string("includes/list_user.html", {'lstUser': users})
 		print(html)
 		await self.channel_layer.group_send(
 			'users',

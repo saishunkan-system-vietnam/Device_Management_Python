@@ -6,9 +6,9 @@ $(function() {
     wsStart = "wss://";
   }
   // endpoint = wsStart + loc.host + loc.pathname
-  endpoint = wsStart + loc.host + "/ws_user/";
+  endpoint = wsStart + loc.host + "/user/";
 
-  var socket = new ReconnectingWebSocket(endpoint);
+  var socket = new WebSocket(endpoint);
 
   socket.onmessage = function(e) {
     console.log("message", e);

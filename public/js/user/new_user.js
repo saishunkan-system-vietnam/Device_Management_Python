@@ -7,11 +7,10 @@ $(function() {
   }
   // endpoint = wsStart + loc.host + loc.pathname
   endpoint = wsStart + loc.host + "/user/";
-
+  console.log(endpoint)
   var socket = new WebSocket(endpoint);
 
   socket.onmessage = function(e) {
-    console.log("message", e);
     var userData = JSON.parse(e.data);
     $("#list_user").html(userData.html_users);
   };

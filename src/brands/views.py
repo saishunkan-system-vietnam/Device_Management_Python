@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404
 from .models import brands
 from django.urls import reverse
 from .form import BrandForm
+from django.db.models.functions import TruncMonth
+from django.db.models import Count
 
 
 def brand(request):
@@ -34,10 +36,19 @@ def edit(request, id=None):
 
 def delete(request):
     if request.method == 'POST':
-        data = brands.objects.filter(id=request.POST.get('id')).update(is_deleted=1)
+        data = brands.objects.filter(
+            id=request.POST.get('id')).update(is_deleted=1)
         if data == 1:
             return HttpResponse('1', request)
         else:
             return HttpResponse('2', request)
     else:
         return HttpResponse('2', request)
+
+
+def chart(request):
+
+    data = brands.objects.raw(
+        'SELECT COUNT(id) as quantity, MONTH(created_time) as created_month FROM brands GROUP BY MONTH(created_time)')
+    print(data)
+    return render(request, 'brands/chart.html')

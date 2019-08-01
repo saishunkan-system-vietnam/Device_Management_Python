@@ -10,19 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var socket = new WebSocket(endpoint);
 
     socket.onmessage = function (e) {
-        console.log("message",e)
+        console.log("messagee",e)
         var res = JSON.parse(e.data);
         document.getElementById("list-brand").innerHTML = res.brand;
     };
 
     socket.onopen = function (e) {
-        console.log("open", e);
-    };
-
-    socket.onerror = function (e) {
-        console.log("error", e);
-    };
+        console.log("opene", e);
+    };    
     socket.onclose = function (e) {
-        console.log("close", e);
+        console.log("closee", e);
     };
 })

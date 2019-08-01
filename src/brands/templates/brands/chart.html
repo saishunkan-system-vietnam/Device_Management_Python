@@ -6,6 +6,7 @@ Chart brand
 
 {% block contentAdmin %}
 {% load staticfiles %}
+
 <div>
     <ul class="breadcrumb">
         <li>
@@ -21,7 +22,7 @@ Chart brand
 </div>
 
 <div class="box-inner text-center">
-    <h1>Chart</h1>
+    <h1>Brand chart</h1>
 </div>
 <div class="row">
     <div class="box col-md-12">
@@ -33,44 +34,44 @@ Chart brand
                             class=" glyphicon glyphicon-remove"></i></a>
                 </div>
             </div>
-            <div class="box-content">
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <div id="columnchart_material" style="width: 1000px; height: 600px;"></div>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <div class="box-content" id="box-content">
+                {% include 'brands/paintchart.html' with data_chart=data_chart %}
             </div>
         </div>
     </div>
 </div>
+
 <script>
-    google.charts.load('current', {'packages':['bar']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Month of year', 'quantity'],
-        ['01', 1000],
-        ['02', 1170],
-        ['03', 660],
-        ['04', 1030],
-        ['05', 1030],
-        ['06', 1030],
-        ['07', 1030],
-        ['08', 1030],
-        ['09', 1030],
-        ['10', 1030],
-        ['11', 1030],
-        ['12', 1030]
-      ]);
-
-      var options = {
-        chart: {
-          title: 'Chart performances brand created follow month of year',
-          subtitle: '',
+    document.addEventListener('DOMContentLoaded', function () {
+        var endpoint = "";
+        var loc = window.location;
+        var wsStart = "ws://";
+        if (loc.protocol == "https:") {
+            wsStart = "wss://";
         }
-      };
+        endpoint = wsStart + loc.host + "/ws_brand/chart/";
 
-      var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        var socket = new WebSocket(endpoint);
 
-      chart.draw(data, google.charts.Bar.convertOptions(options));
-    }
+        socket.onmessage = function (e) {
+            console.log("message", e)
+            var res = JSON.parse(e.data);
+            document.getElementById("box-content").innerHTML = res.chart;
+            console.log(res.chart)
+        };
+
+        socket.onopen = function (e) {
+            console.log("open", e);
+        };
+
+        socket.onerror = function (e) {
+            console.log("error", e);
+        };
+        socket.onclose = function (e) {
+            console.log("close", e);
+        };
+    })
 </script>
+
 {% endblock contentAdmin %}

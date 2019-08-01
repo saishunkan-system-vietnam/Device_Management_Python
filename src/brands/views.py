@@ -4,8 +4,6 @@ from django.shortcuts import get_object_or_404
 from .models import brands
 from django.urls import reverse
 from .form import BrandForm
-from django.db.models.functions import TruncMonth
-from django.db.models import Count
 
 
 def brand(request):
@@ -47,8 +45,15 @@ def delete(request):
 
 
 def chart(request):
-
     data = brands.objects.raw(
-        'SELECT COUNT(id) as quantity, MONTH(created_time) as created_month FROM brands GROUP BY MONTH(created_time)')
-    print(data)
-    return render(request, 'brands/chart.html')
+        'SELECT COUNT(id) as id, MONTH(created_time) as created_month FROM brands GROUP BY MONTH(created_time)')   
+    # data = brands.objects.raw(
+    #     'SELECT COUNT(id) as id, MONTH(created_time) as created_month FROM brands WHERE is_deleted = 0 GROUP BY MONTH(created_time)')   
+    arr_data = []
+    for x in range(12):
+        quantity = 0
+        for val in data:
+            if(val.created_month == (x+1)):
+                quantity =val.id
+        arr_data.append({'month':(x+1), 'quantity': quantity})          
+    return render(request, 'brands/chart.html', {'data_chart':arr_data})

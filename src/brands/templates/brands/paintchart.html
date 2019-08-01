@@ -1,0 +1,54 @@
+<div id="chart_div" style="height: 700px;"></div>
+<div id="columnchart_material" style="width: 1000px; height: 600px; margin-left: 100px"></div>
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+<script>
+    {% autoescape off %}
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
+    var arr_data = [['Month of year', 'Quantity']];
+    {% for x in data_chart %}
+    arr_data.push(['{{x.month}}', {{ x.quantity }}]);
+    {% endfor %}
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(arr_data);
+
+        var options = {
+            title: 'Chart performances brand created follow month of year',
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2() {
+        var data = google.visualization.arrayToDataTable(arr_data);
+        var options = {
+            title: 'Chart performances brand created follow month of year'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawBasic);
+    function drawBasic() {
+        var data = google.visualization.arrayToDataTable(arr_data);
+        var options = {
+            title: 'Chart performances brand created follow month of year',
+            chartArea: { width: '50%' },
+            hAxis: {
+                title: 'Quantity',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Month of year'
+            }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+    {% endautoescape %}
+</script>

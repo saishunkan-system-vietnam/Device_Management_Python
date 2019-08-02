@@ -35,14 +35,20 @@ Chart brand
                 </div>
             </div>
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <div class="box-content" id="box-content">
-                {% include 'brands/paintchart.html' with data_chart=data_chart %}
+            <div class="box-content">
+                <div id="columnchart_material" style="width: 1000px; height: 600px; margin-left: 100px"></div>
+                <div id="chart_div" style="height: 700px;"></div>
+                <div id="piechart" style="width: 900px; height: 500px;"></div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    var arr_data = [];
+    {% for x in data_chart %}
+    arr_data.push(['{{x.month}}', {{ x.quantity }}]);
+    {% endfor %}
     document.addEventListener('DOMContentLoaded', function () {
         var endpoint = "";
         var loc = window.location;
@@ -54,13 +60,6 @@ Chart brand
 
         var socket = new WebSocket(endpoint);
 
-        socket.onmessage = function (e) {
-            console.log("message", e)
-            var res = JSON.parse(e.data);
-            document.getElementById("box-content").innerHTML = res.chart;
-            console.log(res.chart)
-        };
-
         socket.onopen = function (e) {
             console.log("open", e);
         };
@@ -71,7 +70,57 @@ Chart brand
         socket.onclose = function (e) {
             console.log("close", e);
         };
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Month of year');
+            data.addColumn('number', 'Quantity');
+
+            data.addRows(arr_data);
+
+            var options = {
+                title: 'Motivation Level Throughout the Day',
+                hAxis: {
+                    title: 'Time of Day',
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'out',
+                },
+                vAxis: {
+                    title: 'Rating (scale of 1-10)'
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(
+                document.getElementById('columnchart_material'));
+
+            function drawChart() {
+                chart.draw(data, options);
+            }
+            drawChart()
+            socket.onmessage = function (e) {
+                console.log("message", e)
+                arr_data = [['Month of year', 'Quantity']];
+                var res = JSON.parse(e.data);
+                var res_data = res.chart
+                for (var i = 0; i < 11; i++) {
+                    var newQuantity = 0
+                    for (var j = 0; j < res_data.length; j++) {
+                        if ((i + 1) == res_data[j].created_month) {
+                            newQuantity = res_data[j].quantity;
+                        }
+                    }
+                    data.setValue(i, 1, newQuantity)
+                }
+                drawChart()
+            };
+        }
     })
+
 </script>
 
 {% endblock contentAdmin %}

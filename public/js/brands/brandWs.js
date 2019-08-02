@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("opene", e);
     };    
     socket.onclose = function (e) {
-        console.log("closee", e);
+        console.log("close", e);
     };
+
+    socket.onerror = function(e) {
+        console.log("error", e);
+      };
 })
